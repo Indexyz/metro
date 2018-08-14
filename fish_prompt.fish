@@ -77,15 +77,7 @@ function fish_prompt
 
     if test ! -z "$SSH_CLIENT"
         set -l color bbb 222
-
-        if test 0 -eq (id -u "$USER")
-            set color red 222
-        end
-
         segment $color (host_info " usr@host ")
-
-    else if test 0 -eq (id -u "$USER")
-        segment red 222 " \$ "
     end
 
     if test "$status_copy" -ne 0
