@@ -3,7 +3,6 @@ function fish_right_prompt
     set -l status_code $status_copy
     set -l status_color 555
     set -l status_glyph
-    set -l duration_glyph
 
     switch "$status_copy"
         case 0 "$__metro_status_last"
@@ -12,9 +11,7 @@ function fish_right_prompt
 
     set -g __metro_status_last $status_copy
 
-    if test "$status_copy" -eq 0
-        set duration_glyph " "
-    else
+    if test "$status_copy" ! -eq 0
         set status_color red
         set status_glyph │
     end
@@ -26,7 +23,7 @@ function fish_right_prompt
         end
 
         set -l duration (echo $CMD_DURATION | humanize_duration)
-        echo -sn (set_color $status_color) " ($duration) $duration_glyph" (set_color normal)
+        echo -sn (set_color $status_color) "($duration)" (set_color normal)
 
     else
         if test ! -z "$status_code"
