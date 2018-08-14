@@ -11,7 +11,7 @@ function fish_right_prompt
 
     set -g __metro_status_last $status_copy
 
-    if test "$status_copy" ! -eq 0
+    if test ! "$status_copy" -eq 0
         set status_color red
         set status_glyph │
     end
